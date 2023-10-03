@@ -1,6 +1,7 @@
 import React from 'react'
 import CompanyInfo from './layout/CompanyInfo'
 import CompanyPhilosophy from './layout/CompanyPhilosophy'
+import ContactUs from './layout/ContactUs'
 import Hero from './layout/Hero'
 import Services from './layout/Services'
 import { Lang } from './types'
@@ -13,6 +14,7 @@ function App() {
             <CompanyInfo lang={lang} />
             <CompanyPhilosophy />
             <Services lang={lang} />
+            <ContactUs lang={lang} />
         </>
     )
 }
