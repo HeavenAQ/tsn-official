@@ -7,7 +7,7 @@ interface Props {
 
 const CompanyInfo: React.FC<Props> = ({ lang }) => {
     return (
-        <section id="company_info" className="py-10 mx-auto mb-10 w-4/5 h-auto">
+        <section id="company_info" className="py-10 mx-auto mb-10 w-2/3 h-auto">
             <h1 className="mb-20 text-3xl font-black">会社請求書</h1>
             <div className="flex flex-col justify-center items-center space-y-6 w-full lg:flex-row lg:space-y-0">
                 <div className="flex flex-col justify-end items-start pl-6 space-y-9 w-full h-full border-l-4 border-l-black">

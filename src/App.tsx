@@ -6,13 +6,13 @@ import Services from './layout/Services'
 import { Lang } from './types'
 
 function App() {
-    const [lang, setLang] = React.useState<Lang>(Lang.JP)
+    const [lang, setLang] = React.useState<Lang>(Lang.CN)
     return (
         <>
             <Hero lang={lang} setLang={setLang} />
             <CompanyInfo lang={lang} />
             <CompanyPhilosophy />
-            <Services />
+            <Services lang={lang} />
         </>
     )
 }
