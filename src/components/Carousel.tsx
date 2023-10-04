@@ -1,5 +1,4 @@
 import { useState, useEffect, FC, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 
 interface image {
     src: string

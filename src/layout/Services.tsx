@@ -56,7 +56,7 @@ const Services = ({ lang }: Props): JSX.Element => {
         },
         {
             icon: (
-                <BsHouseDoorFill className="w-12 h-20 text-center md:w-20 text-slate-300" />
+                <BsHouseDoorFill className="w-14 h-20 text-center md:w-20 text-slate-300" />
             ),
             chnTitle: '不動產相關諮詢',
             jpnTitle: '不動産取引コンサルティング'
@@ -72,23 +72,25 @@ const Services = ({ lang }: Props): JSX.Element => {
 
     return (
         <section
-            className="mx-auto mt-10 w-2/3 h-auto text-center"
+            className="pt-10 mx-auto w-4/5 h-auto text-center lg:w-2/3"
             id="services"
         >
-            <h1 className="mb-20 text-3xl font-black">服務</h1>
-            <div className="grid overflow-hidden grid-cols-2 grid-rows-2 place-content-center mb-20 w-full lg:flex lg:flex-row lg:justify-center lg:items-start lg:space-x-6">
+            <h1 className="text-xl font-black text-center md:text-2xl lg:mb-20 lg:text-3xl tracking-[20px]">
+                {lang === Lang.CN ? '服務' : '事業案内'}
+            </h1>
+            <div className="grid overflow-hidden grid-cols-2 grid-rows-2 place-content-center mb-20 w-full md:flex md:flex-row md:justify-center md:items-start md:space-x-6">
                 {services.map((service, i) => (
                     <div
                         className="flex flex-col justify-center justify-self-center items-center self-center text-sm bg-base-100 md:text-md"
                         key={i}
                     >
                         <figure className="px-10 pt-10">{service.icon}</figure>
-                        <div className="mt-5 text-center">
-                            <p>
+                        <div className="mt-8 text-center">
+                            <h3 className="md:text-lg md:text-md">
                                 {lang === Lang.CN
                                     ? service.chnTitle
                                     : service.jpnTitle}
-                            </p>
+                            </h3>
                         </div>
                     </div>
                 ))}

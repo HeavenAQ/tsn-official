@@ -10,7 +10,7 @@ interface Props {
 
 export default function Hero({ lang, setLang }: Props): JSX.Element {
     const chnNavContent = ['公司概要', '公司理念', '服務', '聯絡我們']
-    const jpnNavContent = ['会社概要', '会社理念', 'サービス', 'お問い合わせ']
+    const jpnNavContent = ['企業情報', '会社理念', '事業案内', 'お問い合わせ']
     const navLink = [
         'company_info',
         'company_philosophy',
@@ -20,7 +20,7 @@ export default function Hero({ lang, setLang }: Props): JSX.Element {
     const navContent = lang === Lang.JP ? jpnNavContent : chnNavContent
 
     return (
-        <div className="flex overflow-hidden relative items-baseline w-full h-auto bg-black max-h-[800px]">
+        <div className="flex overflow-hidden relative items-baseline w-full h-auto bg-black max-h-[800px] text-md">
             <img
                 className="w-full h-full opacity-50"
                 src={HeroImg}
@@ -47,13 +47,17 @@ export default function Hero({ lang, setLang }: Props): JSX.Element {
                     <label className="swap">
                         <input
                             type="checkbox"
-                            className="transition-all duration-100 hover:border-b-2 hover:border-slate-300 hover:text-slate-300"
+                            className="w-8 h-8 text-gray-700 bg-gray-100 rounded-md transition-all duration-100 hover:bg-gray-300"
                             onClick={() =>
                                 setLang(lang === Lang.CN ? Lang.JP : Lang.CN)
                             }
                         />
-                        <div className="swap-on text-[#D4D6D6]">中</div>
-                        <div className="swap-off text-[#D4D6D6]">日</div>
+                        <div className="flex justify-center items-center w-full h-full font-bold text-center swap-on">
+                            中
+                        </div>
+                        <div className="flex justify-center items-center w-full h-full font-bold text-center swap-off">
+                            日
+                        </div>
                     </label>
                 </div>
             </div>

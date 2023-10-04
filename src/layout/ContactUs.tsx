@@ -50,9 +50,9 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
 
     return (
         <section className="mt-20 w-full h-auto bg-gray-100">
-            <div className="pt-10 mx-auto w-2/3 max-w-[1000px]">
+            <div className="pt-10 mx-auto w-4/5 lg:w-2/3 max-w-[1000px]">
                 <h1
-                    className="my-10 text-3xl font-black text-center"
+                    className="mb-8 text-xl font-black text-center md:text-2xl lg:mb-12 lg:text-3xl tracking-[20px]"
                     id="contact_us"
                 >
                     {renderInputField('お問い合わせ', '聯絡我們')}
@@ -65,7 +65,7 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
                                 className="block py-3 px-4 mb-3 w-full leading-tight rounded border appearance-none"
                                 id="grid-first-name"
                                 type="text"
-                                placeholder={renderInputField('名前', '姓名')}
+                                placeholder={renderInputField('お名前', '姓名')}
                                 required
                             />
                         </div>
@@ -110,10 +110,7 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
                                 className="block py-3 px-4 mb-3 w-full leading-tight rounded border appearance-none"
                                 id="title"
                                 type="text"
-                                placeholder={renderInputField(
-                                    'メッセージ',
-                                    '內文'
-                                )}
+                                placeholder={renderInputField('件名', '主旨')}
                                 required
                             />
                         </div>
@@ -127,7 +124,7 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
                                 id="body"
                                 rows={10}
                                 placeholder={renderInputField(
-                                    'メッセージを入力してください',
+                                    'メッセージをご入力ください',
                                     '請輸入內文'
                                 )}
                                 required
