@@ -1,5 +1,6 @@
 import React from 'react'
 import { Lang } from '../types'
+import { services } from '../info'
 
 interface Props {
     lang: Lang
@@ -10,25 +11,6 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
     const serviceTypeRef = React.useRef<HTMLSelectElement>(null)
     const titleRef = React.useRef<HTMLInputElement>(null)
     const bodyRef = React.useRef<HTMLTextAreaElement>(null)
-    const services = [
-        {
-            chnTitle: '活動規劃',
-            jpnTitle: 'イベント企画'
-        },
-        {
-            chnTitle: '藝術家經紀',
-            jpnTitle: '音楽家、文化人等のマネジメント、プロモート'
-        },
-        {
-            chnTitle: '不動產相關諮詢',
-            jpnTitle: '不動産取引コンサルティング'
-        },
-        {
-            chnTitle: '翻譯',
-            jpnTitle: '翻訳/通訳'
-        }
-    ]
-
     const onSubmit = (ev: React.FormEvent) => {
         ev.preventDefault()
         if (
@@ -49,12 +31,12 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
     }
 
     return (
-        <section className="mt-20 w-full h-auto bg-gray-100">
+        <section
+            className="pt-8 mt-20 w-full h-auto bg-gray-100"
+            id="contact_us"
+        >
             <div className="pt-10 mx-auto w-4/5 lg:w-2/3 max-w-[1000px]">
-                <h1
-                    className="mb-8 text-xl font-black text-center md:text-2xl lg:mb-12 lg:text-3xl tracking-[20px]"
-                    id="contact_us"
-                >
+                <h1 className="mb-8 text-2xl font-black text-center lg:mb-12 lg:text-3xl tracking-[20px]">
                     {renderInputField('お問い合わせ', '聯絡我們')}
                 </h1>
                 <form className="p-6 w-full rounded-xl" onSubmit={onSubmit}>
@@ -90,15 +72,15 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
                             >
                                 {services.map(service => (
                                     <option
-                                        key={service.jpnTitle}
+                                        key={service.jp}
                                         value={renderInputField(
-                                            service.jpnTitle,
-                                            service.chnTitle
+                                            service.jp,
+                                            service.chn
                                         )}
                                     >
                                         {renderInputField(
-                                            service.jpnTitle,
-                                            service.chnTitle
+                                            service.jp,
+                                            service.chn
                                         )}
                                     </option>
                                 ))}

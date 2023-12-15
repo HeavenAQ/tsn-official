@@ -4,12 +4,17 @@ import Logo from '../images/website/logo.png'
 
 const Footer: React.FC = () => {
     const icons = [
-        { info: '072-284-9617', icon: <FaPhoneSquare size={24} /> },
+        {
+            info: '072-284-9617',
+            icon: <FaPhoneSquare size={24} />,
+            link: 'tel:072-284-9617'
+        },
         {
             info: '〒593-8316 大阪府堺市西区山田 4-2056-1',
-            icon: <FaMapMarkerAlt size={24} />
+            icon: <FaMapMarkerAlt size={24} />,
+            link: 'https://maps.app.goo.gl/8Xw2yCVDRxNYDZFC7'
         },
-        { info: 'info@twtsn.co.jp', icon: <FaEnvelope size={24} /> }
+        { info: 'info@twtsn.co.jp', icon: <FaEnvelope size={24} />, link: '' }
     ]
 
     return (
@@ -25,9 +30,9 @@ const Footer: React.FC = () => {
                 {icons.map((icon, i) => (
                     <div
                         key={i}
-                        className="flex flex-col justify-start items-center"
+                        className="flex flex-col justify-start items-center cursor-pointer"
                     >
-                        <a href={i === 0 ? `tel:${icon.info}` : ''}>
+                        <a href={icon.link}>
                             <div className="tooltip" data-tip={icon.info}>
                                 <button className="btn-sm">{icon.icon}</button>
                             </div>
