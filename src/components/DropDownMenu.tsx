@@ -9,7 +9,7 @@ interface Props {
 
 const DropDownMenu: React.FC<Props> = ({ lang }) => {
     return (
-        <div className="z-10 dropdown dropdown-bottom">
+        <div className="z-20 dropdown dropdown-bottom">
             <div tabIndex={0} role="button" className="m-1 btn">
                 <FiAlignLeft className="text-xl" />
             </div>

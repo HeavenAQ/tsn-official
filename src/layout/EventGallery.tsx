@@ -3,6 +3,30 @@ import React, { useState, useRef } from 'react'
 import { events, Event } from '../info'
 import { Lang } from '../types'
 
+const selectedEffect = [
+    'before:pointer-events-none',
+    'before:absolute',
+    'before:top-1/2',
+    'before:left:1/2',
+    'before:-translate-y-1/2',
+    'before:bg-gradient-to-br',
+    'before:from-zinc-800',
+    'before:to-gray-300',
+    'before:w-full',
+    'before:h-full',
+    'before:z-9',
+    "before:content-['SELECTED']",
+    'before:text-white',
+    'before:font-black',
+    'before:flex',
+    'before:justify-center',
+    'before:items-center',
+    'before:opacity-70',
+    'before:rounded-lg',
+    'before:lg:text-lg',
+    'before:sm:text-sm',
+    'before:text-[9px]'
+]
 interface Props {
     lang: Lang
 }
@@ -12,30 +36,6 @@ const Thumbnails = (
     thumbnailInfo: ThumnailInfo
 ) => {
     return currentEvent.event.images.map((image, i) => {
-        const selectedEffect = [
-            'before:pointer-events-none',
-            'before:absolute',
-            'before:top-1/2',
-            'before:left:1/2',
-            'before:-translate-y-1/2',
-            'before:bg-gradient-to-br',
-            'before:from-zinc-800',
-            'before:to-gray-300',
-            'before:w-full',
-            'before:h-full',
-            'before:z-9',
-            "before:content-['SELECTED']",
-            'before:text-white',
-            'before:font-black',
-            'before:flex',
-            'before:justify-center',
-            'before:items-center',
-            'before:opacity-70',
-            'before:rounded-lg',
-            'before:lg:text-lg',
-            'before:sm:text-sm',
-            'before:text-[9px]'
-        ]
         const defaultSelected = i === 0 ? selectedEffect.join(' ') : ''
         return (
             <div
@@ -113,16 +113,24 @@ const EventGallery: React.FC<Props> = ({ lang }) => {
                     </div>
                     <div className="inline-flex justify-center items-baseline">
                         <select
-                            className="block overflow-x-hidden py-3 px-4 mb-3 leading-tight rounded border appearance-none max-w-[60vw] text-ellipsis"
+                            className="block overflow-x-hidden py-3 px-4 mb-3 leading-tight rounded border appearance-none cursor-pointer max-w-[60vw] text-ellipsis"
                             id="service-type"
                             onChange={e => {
                                 setCurrentEvent(
                                     events[parseInt(e.target.value)]
                                 )
+                                thumbnailInfo.setThumnailIdx(0)
+                                selectedThumbnail?.classList.remove(
+                                    ...selectedEffect
+                                )
                             }}
                         >
                             {events.map((service, i) => (
-                                <option key={i} value={i}>
+                                <option
+                                    key={i}
+                                    value={i}
+                                    className="cursor-pointer"
+                                >
                                     ⧨ {service.title}
                                 </option>
                             ))}
@@ -146,7 +154,7 @@ const EventGallery: React.FC<Props> = ({ lang }) => {
                             })
                         }}
                     >
-                        <div className="inline-flex relative justify-start mx-auto space-x-6 h-auto whitespace-nowrap -z-10">
+                        <div className="inline-flex relative justify-start mx-auto space-x-6 h-auto whitespace-nowrap">
                             {Thumbnails(currentEventElement, thumbnailInfo)}
                         </div>
                     </div>
