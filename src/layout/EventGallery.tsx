@@ -1,4 +1,3 @@
-'use client'
 import React, { useState, useRef } from 'react'
 import { events, Event } from '../info'
 import { Lang } from '../types'
