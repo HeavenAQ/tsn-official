@@ -55,6 +55,8 @@ export default function Hero({ lang, setLang }: Props): JSX.Element {
                 <motion.a className="cursor-pointer" href="/" style={{ y }}>
                     <motion.img src={Logo} alt="Logo" style={{ scale }} />
                 </motion.a>
+            </div>
+            <div className="absolute bottom-8 left-1/2 translate-x-[-50%]">
                 <NavBar
                     lang={lang}
                     setLang={setLang}
