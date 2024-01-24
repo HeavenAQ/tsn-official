@@ -41,6 +41,14 @@ const Thumbnails = (
                 className={`relative cursor-pointer ${defaultSelected} w-36 h-24 inline-block`}
                 key={i}
                 ref={i === 0 ? thumbnailInfo.ref : null}
+                onLoad={e => {
+                    if (i === 0) {
+                        thumbnailInfo.setThumnailIdx(i)
+                        thumbnailInfo.setThumnail(e.currentTarget)
+                        e.currentTarget.classList.add(...selectedEffect)
+                        thumbnailInfo.ref.current = e.currentTarget
+                    }
+                }}
                 onClick={e => {
                     thumbnailInfo.setThumnailIdx(i)
                     thumbnailInfo.ref.current?.classList.remove(
@@ -51,12 +59,14 @@ const Thumbnails = (
                     thumbnailInfo.setThumnail(e.currentTarget)
                 }}
             >
-                <img
-                    src={image}
-                    alt="event image1"
-                    className="object-cover w-full h-full rounded-lg"
-                    loading="lazy"
-                />
+                <div className="w-full h-full bg-center bg-cover">
+                    <img
+                        src={image}
+                        alt="event image1"
+                        className="object-cover object-center w-full h-full rounded-lg"
+                        loading="lazy"
+                    />
+                </div>
             </div>
         )
     })
