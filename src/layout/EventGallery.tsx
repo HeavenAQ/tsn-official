@@ -34,7 +34,7 @@ const Thumbnails = (
     currentEvent: EventElement,
     thumbnailInfo: ThumnailInfo
 ) => {
-    return currentEvent.event.images.map((image, i) => {
+    return currentEvent.event.imgs.map((image, i) => {
         const defaultSelected = i === 0 ? selectedEffect.join(' ') : ''
         return (
             <div
@@ -103,7 +103,7 @@ const EventGallery: React.FC<Props> = ({ lang }) => {
                     <div className="w-full h-[60vh]">
                         <img
                             src={
-                                currentEventElement.event.images[
+                                currentEventElement.event.imgs[
                                     selectedThumbnailIdx
                                 ]
                             }
