@@ -55,6 +55,7 @@ const Thumbnails = (
                     src={image}
                     alt="event image1"
                     className="object-cover w-full h-full rounded-lg"
+                    loading="lazy"
                 />
             </div>
         )
@@ -108,6 +109,7 @@ const EventGallery: React.FC<Props> = ({ lang }) => {
                             }
                             alt="episode image1"
                             className="object-cover w-full h-full rounded-lg"
+                            loading="lazy"
                         />
                     </div>
                     <div className="inline-flex justify-center items-baseline">

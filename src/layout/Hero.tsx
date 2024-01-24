@@ -1,6 +1,6 @@
 import React from 'react'
-import HeroImg from '../images/website/和歌山/LINE_ALBUM_829和歌山_231003_1.jpg'
-import Logo from '../images/website/logo.png'
+import HeroImg from '../images/website/和歌山/LINE_ALBUM_829和歌山_231003_1.webp'
+import Logo from '../images/website/logo.webp'
 import { Lang } from '../types'
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 import { navContent } from '../info'

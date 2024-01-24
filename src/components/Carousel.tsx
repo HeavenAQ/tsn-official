@@ -53,6 +53,7 @@ const Carousel = ({ images }: Props): JSX.Element => {
                                 key={i}
                                 src={image.src}
                                 alt={image.alt}
+                                loading="lazy"
                             />
                             <p className="my-4 text-center text-gray-500">
                                 <span>
