@@ -5,26 +5,32 @@ import { navContent } from '../info'
 
 interface Props {
     lang: Lang
+    setLang: React.Dispatch<React.SetStateAction<Lang>>
 }
 
-const DropDownMenu: React.FC<Props> = ({ lang }) => {
-    return (
-        <div className="z-20 dropdown dropdown-bottom">
-            <div tabIndex={0} role="button" className="m-1 btn">
-                <FiAlignLeft className="text-xl" />
-            </div>
-            <ul
-                tabIndex={0}
-                className="z-50 p-2 w-52 shadow dropdown-content menu bg-base-100 rounded-box"
-            >
-                {navContent.map(({ chn, jp, link }, i) => (
-                    <li key={i}>
-                        <a href={`#${link}`}>{lang === Lang.CN ? chn : jp}</a>
-                    </li>
-                ))}
-            </ul>
+const DropDownMenu: React.FC<Props> = ({ lang, setLang }) => (
+    <div className="z-20 dropdown dropdown-bottom">
+        <div tabIndex={0} role="button" className="m-1 btn">
+            <FiAlignLeft className="text-xl" />
         </div>
-    )
-}
+        <ul
+            tabIndex={0}
+            className="z-50 p-2 w-52 shadow dropdown-content menu bg-base-100 rounded-box"
+        >
+            {navContent.map(({ chn, jp, link }, i) => (
+                <li key={i}>
+                    <a href={`#${link}`}>{lang === Lang.CN ? chn : jp}</a>
+                </li>
+            ))}
+            <li>
+                {lang === Lang.CN ? (
+                    <a onClick={() => setLang(Lang.JP)}>日本語</a>
+                ) : (
+                    <a onClick={() => setLang(Lang.CN)}>中文</a>
+                )}
+            </li>
+        </ul>
+    </div>
+)
 
 export default DropDownMenu

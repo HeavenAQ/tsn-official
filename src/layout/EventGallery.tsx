@@ -14,7 +14,7 @@ const selectedEffect = [
     'before:w-full',
     'before:h-full',
     'before:z-9',
-    "before:content-['SELECTED']",
+    "before:content-['']",
     'before:text-white',
     'before:font-black',
     'before:flex',

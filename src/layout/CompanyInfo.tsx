@@ -1,5 +1,4 @@
 import React from 'react'
-import DropDownMenu from '../components/DropDownMenu'
 import { Lang } from '../types'
 
 interface Props {

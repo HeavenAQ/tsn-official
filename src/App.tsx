@@ -16,7 +16,7 @@ function App() {
             <Hero lang={lang} setLang={setLang} />
             <div className="relative w-full h-full" id="recent_events">
                 <div id="dropdown" className="sticky top-4 m-4">
-                    <DropDownMenu lang={lang} />
+                    <DropDownMenu lang={lang} setLang={setLang} />
                 </div>
                 <RecentEvents lang={lang} />
                 <CompanyInfo lang={lang} />

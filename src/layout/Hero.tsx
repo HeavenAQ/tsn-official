@@ -51,7 +51,7 @@ export default function Hero({ lang, setLang }: Props): JSX.Element {
                 alt="Hero"
                 style={{ opacity: sticky }}
             />
-            <div className="flex absolute top-1/2 left-1/2 flex-col items-center translate-x-[-50%] translate-y-[-50%]">
+            <div className="flex absolute top-1/2 left-1/2 flex-col items-center translate-x-[-50%] translate-y-[-50%] min-w-[24rem] min-h-[24rem]">
                 <motion.a className="cursor-pointer" href="/" style={{ y }}>
                     <motion.img src={Logo} alt="Logo" style={{ scale }} />
                 </motion.a>
