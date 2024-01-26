@@ -1,43 +1,76 @@
-import React from 'react'
-import img0 from './images/website/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_1.webp'
-import img1 from './images/website/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_2.webp'
-import img2 from './images/website/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_3.webp'
-import img3 from './images/website/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_4.webp'
-import img4 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_1.webp'
-import img5 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_2.webp'
-import img6 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_3.webp'
-import img7 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_4.webp'
-import img8 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_5.webp'
-import img9 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_6.webp'
-import img10 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_7.webp'
-import img11 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_8.webp'
-import img12 from './images/website/和歌山/LINE_ALBUM_829和歌山_231003_1.webp'
-import img13 from './images/website/和歌山/LINE_ALBUM_829和歌山_231003_2.webp'
-import img14 from './images/website/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_1.webp'
-import img15 from './images/website/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_2.webp'
-import img16 from './images/website/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_3.webp'
-import img17 from './images/website/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_4.webp'
-import img18 from './images/website/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_5.webp'
+const img0 =
+    '/images/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_1.webp'
+const img1 =
+    '/images/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_2.webp'
+const img2 =
+    '/images/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_3.webp'
+const img3 =
+    '/images/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_4.webp'
+const img4 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_1.webp'
+const img5 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_2.webp'
+const img6 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_3.webp'
+const img7 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_4.webp'
+const img8 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_5.webp'
+const img9 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_6.webp'
+const img10 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_7.webp'
+const img11 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_8.webp'
+const img12 = '/images/和歌山/LINE_ALBUM_829和歌山_231003_1.webp'
+const img13 = '/images/和歌山/LINE_ALBUM_829和歌山_231003_2.webp'
+const img14 =
+    '/images/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_1.webp'
+const img15 =
+    '/images/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_2.webp'
+const img16 =
+    '/images/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_3.webp'
+const img17 =
+    '/images/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_4.webp'
+const img18 =
+    '/images/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_5.webp'
 
-import simg0 from './images/website/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_1_small.webp'
-import simg1 from './images/website/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_2_small.webp'
-import simg2 from './images/website/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_3_small.webp'
-import simg3 from './images/website/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_4_small.webp'
-import simg4 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_1_small.webp'
-import simg5 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_2_small.webp'
-import simg6 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_3_small.webp'
-import simg7 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_4_small.webp'
-import simg8 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_5_small.webp'
-import simg9 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_6_small.webp'
-import simg10 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_7_small.webp'
-import simg11 from './images/website/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_8_small.webp'
-import simg12 from './images/website/和歌山/LINE_ALBUM_829和歌山_231003_1_small.webp'
-import simg13 from './images/website/和歌山/LINE_ALBUM_829和歌山_231003_2_small.webp'
-import simg14 from './images/website/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_1_small.webp'
-import simg15 from './images/website/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_2_small.webp'
-import simg16 from './images/website/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_3_small.webp'
-import simg17 from './images/website/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_4_small.webp'
-import simg18 from './images/website/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_5_small.webp'
+const simg0 =
+    '/images/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_1_small.webp'
+const simg1 =
+    '/images/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_2_small.webp'
+const simg2 =
+    '/images/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_3_small.webp'
+const simg3 =
+    '/images/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_4_small.webp'
+const simg4 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_1_small.webp'
+const simg5 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_2_small.webp'
+const simg6 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_3_small.webp'
+const simg7 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_4_small.webp'
+const simg8 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_5_small.webp'
+const simg9 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_6_small.webp'
+const simg10 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_7_small.webp'
+const simg11 =
+    '/images/和歌山/LINE_ALBUM_2023和歌山市 第二回日本台灣學校美術作品合同展_231209_8_small.webp'
+const simg12 = '/images/和歌山/LINE_ALBUM_829和歌山_231003_1_small.webp'
+const simg13 = '/images/和歌山/LINE_ALBUM_829和歌山_231003_2_small.webp'
+const simg14 =
+    '/images/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_1_small.webp'
+const simg15 =
+    '/images/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_2_small.webp'
+const simg16 =
+    '/images/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_3_small.webp'
+const simg17 =
+    '/images/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_4_small.webp'
+const simg18 =
+    '/images/和泉市/LINE_ALBUM_2023 和泉市　台湾茶体験講座_231209_5_small.webp'
 
 export const navContent = [
     {

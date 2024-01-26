@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 interface image {
     title: string
     src: string
+    srcSm: string
     alt: string
 }
 
@@ -15,6 +16,7 @@ const delay = 4000
 const Carousel = ({ images }: Props): JSX.Element => {
     const [index, setIndex] = useState(0)
     const timeoutRef = useRef<null | NodeJS.Timeout>(null)
+    const [loadedIndices, setLoadedIndices] = useState<number[]>([])
 
     function resetTimeout() {
         if (timeoutRef.current) {
@@ -47,13 +49,33 @@ const Carousel = ({ images }: Props): JSX.Element => {
                     }}
                 >
                     {images.map((image, i) => (
-                        <div className="inline-block w-full h-[60vh]" key={i}>
+                        <div
+                            className="inline-block relative w-full h-[60vh]"
+                            key={i}
+                        >
                             <img
-                                className="object-cover w-full h-full rounded-xl"
+                                className={`object-cover absolute top-0 left-0 w-full h-full rounded-xl ${
+                                    loadedIndices.includes(i)
+                                        ? 'opacity-0'
+                                        : 'opacity-100 animate-pulse duration-100 animate-infinite'
+                                }`}
+                                key={i}
+                                src={image.srcSm}
+                                alt={image.alt}
+                            />
+                            <img
+                                className={`object-cover w-full h-full rounded-xl ${
+                                    loadedIndices.includes(i)
+                                        ? 'opacity-100'
+                                        : 'opacity-0'
+                                }`}
                                 key={i}
                                 src={image.src}
                                 alt={image.alt}
                                 loading="lazy"
+                                onLoad={_ =>
+                                    setLoadedIndices([...loadedIndices, i])
+                                }
                             />
                             <p className="my-4 text-center text-gray-500">
                                 <span>

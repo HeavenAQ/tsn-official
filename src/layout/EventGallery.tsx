@@ -34,6 +34,8 @@ const Thumbnails = (
     currentEvent: EventElement,
     thumbnailInfo: ThumnailInfo
 ) => {
+    const [loadedIdices, setLoadedIdices] = useState<number[]>([])
+
     return currentEvent.event.imgs.map((image, i) => {
         const defaultSelected = i === 0 ? selectedEffect.join(' ') : ''
         return (
@@ -59,12 +61,26 @@ const Thumbnails = (
                     thumbnailInfo.setThumnail(e.currentTarget)
                 }}
             >
-                <div className="w-full h-full bg-center bg-cover">
+                <div className="relative w-full h-full -z-10">
+                    <img
+                        src={currentEvent.event.smImgs[i]}
+                        alt="event small image"
+                        className={`object-cover object-center absolute top-0 left-0 w-full h-full rounded-lg ${
+                            loadedIdices.includes(i)
+                                ? 'opacity-0'
+                                : 'opacity-100 animate-pulse duration-100 animate-infinite'
+                        }`}
+                    />
                     <img
                         src={image}
-                        alt="event image1"
-                        className="object-cover object-center w-full h-full rounded-lg"
+                        alt="event image"
+                        className={`object-cover object-center w-full h-full rounded-lg ${
+                            loadedIdices.includes(i)
+                                ? 'opacity-100'
+                                : 'opacity-0'
+                        }`}
                         loading="lazy"
+                        onLoad={_ => setLoadedIdices([...loadedIdices, i])}
                     />
                 </div>
             </div>
@@ -88,6 +104,7 @@ interface ThumnailInfo {
 }
 
 const EventGallery: React.FC<Props> = ({ lang }) => {
+    const [loaded, setLoaded] = useState<boolean>(false)
     const [currentEvent, setCurrentEvent] = useState<Event>(events[0])
     const currentEventElement: EventElement = {
         event: currentEvent,
@@ -110,7 +127,21 @@ const EventGallery: React.FC<Props> = ({ lang }) => {
             </h1>
             <div className="flex flex-col gap-14 justify-center items-center mx-auto">
                 <div className="flex overflow-hidden flex-col gap-6 justify-center items-center mx-auto w-11/12">
-                    <div className="w-full h-[60vh]">
+                    <div className="relative w-full h-[60vh]">
+                        <img
+                            src={
+                                currentEventElement.event.smImgs[
+                                    selectedThumbnailIdx
+                                ]
+                            }
+                            alt="episode image1 small"
+                            className={`object-cover object-center absolute top-0 left-0 w-full h-full rounded-lg ${
+                                loaded
+                                    ? 'opacity-0'
+                                    : 'opacity-1 animate-pulse duration-100 animate-infinite'
+                            }`}
+                        />
+
                         <img
                             src={
                                 currentEventElement.event.imgs[
@@ -118,8 +149,11 @@ const EventGallery: React.FC<Props> = ({ lang }) => {
                                 ]
                             }
                             alt="episode image1"
-                            className="object-cover w-full h-full rounded-lg"
+                            className={`object-cover w-full h-full rounded-lg ${
+                                loaded ? 'opacity-1' : 'opacity-0'
+                            }`}
                             loading="lazy"
+                            onLoad={_ => setLoaded(true)}
                         />
                     </div>
                     <div className="inline-flex justify-center items-baseline">
