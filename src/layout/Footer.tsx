@@ -1,6 +1,5 @@
 import React from 'react'
 import { FaPhoneSquare, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa'
-import Logo from '../images/website/logo.png'
 
 const Footer: React.FC = () => {
     const icons = [
@@ -21,7 +20,7 @@ const Footer: React.FC = () => {
         <footer className="flex overflow-hidden left-1/2 z-30 flex-col gap-6 justify-center items-center p-6 mx-auto w-full h-80 text-center text-white bg-zinc-500">
             <a className="cursor-pointer" href="/">
                 <img
-                    src={Logo}
+                    src="/images/logo.webp"
                     alt="Logo"
                     className="w-24 h-24 lg:w-32 lg:h-32 xl:w-44 xl:h-44 lg-w:32"
                 />
