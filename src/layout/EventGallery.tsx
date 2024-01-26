@@ -79,8 +79,9 @@ const Thumbnails = (
                                 ? 'opacity-100'
                                 : 'opacity-0'
                         }`}
-                        loading="lazy"
-                        onLoad={_ => setLoadedIdices([...loadedIdices, i])}
+                        onLoad={_ =>
+                            setLoadedIdices((e: number[]) => [...e, i])
+                        }
                     />
                 </div>
             </div>

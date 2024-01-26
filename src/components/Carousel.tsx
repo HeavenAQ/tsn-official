@@ -59,7 +59,6 @@ const Carousel = ({ images }: Props): JSX.Element => {
                                         ? 'opacity-0'
                                         : 'opacity-100 animate-pulse duration-100 animate-infinite'
                                 }`}
-                                key={i}
                                 src={image.srcSm}
                                 alt={image.alt}
                             />
@@ -69,12 +68,10 @@ const Carousel = ({ images }: Props): JSX.Element => {
                                         ? 'opacity-100'
                                         : 'opacity-0'
                                 }`}
-                                key={i}
                                 src={image.src}
                                 alt={image.alt}
-                                loading="lazy"
                                 onLoad={_ =>
-                                    setLoadedIndices([...loadedIndices, i])
+                                    setLoadedIndices((e: number[]) => [...e, i])
                                 }
                             />
                             <p className="my-4 text-center text-gray-500">
