@@ -14,6 +14,7 @@
         "framer-motion": "^10.16.16",
         "punycode": "^2.3.1",
         "react": "^18.2.0",
+        "react-chrono": "^2.4.2",
         "react-dom": "^18.2.0",
         "react-icons": "^4.11.0",
         "react-scripts": "5.0.1",
@@ -50,6 +51,7 @@
         "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
         "@typescript-eslint/parser": "^5.62.0",
         "daisyui": "^3.8.3",
-        "prettier": "^3.0.3"
+        "prettier": "^3.0.3",
+        "react-router-dom": "^6.21.3"
     }
 }

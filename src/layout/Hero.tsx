@@ -25,7 +25,7 @@ function NavBar({ lang, setLang, scrollYProgress }: NavProps): JSX.Element {
                 <a
                     key={i}
                     className="transition-all duration-100 cursor-pointer hover:border-b-2 text-[#D4D6D6] hover:border-slate-300 hover:text-slate-300"
-                    href={`#${link}`}
+                    href={`${link}`}
                 >
                     {lang === Lang.CN ? chn : jp}
                 </a>
@@ -45,16 +45,6 @@ export default function Hero({ lang, setLang }: Props): JSX.Element {
     return (
         <motion.div className="flex relative items-baseline bg-black text-md w-[100vw] h-[100vh]">
             <motion.img
-                className={`absolute left-0 top-0 object-cover opacity-50 w-[100vw] h-[100vh] ${
-                    loaded
-                        ? 'opacity-0 transition-opacity ease-in-out duration-300'
-                        : 'opacity-1'
-                }`}
-                src="/images/和歌山/LINE_ALBUM_829和歌山_231003_1_small.webp"
-                alt="Hero"
-                style={{ opacity: sticky }}
-            />
-            <motion.img
                 className={`object-cover w-[100vw] h-[100vh] ${
                     loaded ? 'opacity-50' : 'opacity-0'
                 }`}
@@ -63,6 +53,15 @@ export default function Hero({ lang, setLang }: Props): JSX.Element {
                 style={{ opacity: sticky }}
                 loading="lazy"
                 onLoad={_ => setLoaded(true)}
+            />
+            <motion.img
+                className={`absolute left-0 top-0 object-cover w-[100vw] h-[100vh] ${
+                    loaded
+                        ? 'opacity-0 transition-opacity ease-in-out duration-300'
+                        : 'opacity-100'
+                }`}
+                src="/images/和歌山/LINE_ALBUM_829和歌山_231003_1_small.webp"
+                alt="Hero"
             />
             <div className="flex absolute top-1/2 left-1/2 flex-col items-center translate-x-[-50%] translate-y-[-50%] min-w-[24rem] min-h-[24rem]">
                 <motion.a className="cursor-pointer" href="/" style={{ y }}>

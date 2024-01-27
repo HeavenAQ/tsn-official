@@ -34,7 +34,7 @@ const Thumbnails = (
     currentEvent: EventElement,
     thumbnailInfo: ThumnailInfo
 ) => {
-    const [loadedIdices, setLoadedIdices] = useState<number[]>([])
+    const [loadedIndices, setLoadedIndices] = useState<number[]>([])
 
     return currentEvent.event.imgs.map((image, i) => {
         const defaultSelected = i === 0 ? selectedEffect.join(' ') : ''
@@ -66,7 +66,7 @@ const Thumbnails = (
                         src={currentEvent.event.smImgs[i]}
                         alt="event small image"
                         className={`object-cover object-center absolute top-0 left-0 w-full h-full rounded-lg ${
-                            loadedIdices.includes(i)
+                            loadedIndices.includes(i)
                                 ? 'opacity-0'
                                 : 'opacity-100 animate-pulse duration-100 animate-infinite'
                         }`}
@@ -75,12 +75,12 @@ const Thumbnails = (
                         src={image}
                         alt="event image"
                         className={`object-cover object-center w-full h-full rounded-lg ${
-                            loadedIdices.includes(i)
+                            loadedIndices.includes(i)
                                 ? 'opacity-100'
                                 : 'opacity-0'
                         }`}
                         onLoad={_ =>
-                            setLoadedIdices((e: number[]) => [...e, i])
+                            setLoadedIndices((e: number[]) => [...e, i])
                         }
                     />
                 </div>
@@ -128,7 +128,7 @@ const EventGallery: React.FC<Props> = ({ lang }) => {
             </h1>
             <div className="flex flex-col gap-14 justify-center items-center mx-auto">
                 <div className="flex overflow-hidden flex-col gap-6 justify-center items-center mx-auto w-11/12">
-                    <div className="relative w-full h-[60vh]">
+                    <div className="relative w-full h-[60vh] -z-10">
                         <img
                             src={
                                 currentEventElement.event.smImgs[
