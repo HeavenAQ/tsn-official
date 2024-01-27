@@ -19,10 +19,10 @@ interface Item {
 const renderMonthEvent = (
     lang: Lang,
     events: CompanyPastEvent[],
-    i: number
+    idx: number
 ) => {
     return (
-        <div key={i} className="pl-5 w-full h-full">
+        <div key={idx} className="pl-5 w-full h-full">
             <ul>
                 {events.map((event, i) => (
                     <li key={i} className="mb-4 list-disc">
@@ -31,14 +31,14 @@ const renderMonthEvent = (
                         </h4>
                         <div className="flex justify-start items-center space-x-3">
                             {lang === Lang.JP
-                                ? event.jpLocation.map((location, i) => (
-                                      <div className="flex justify-center items-center h-10 bg-black rounded-full">
-                                          <p key={i}>{location}</p>
+                                ? event.jpLocation.map((location, j) => (
+                                      <div className="flex justify-center items-center px-3 h-5 text-white bg-black rounded-full">
+                                          <p key={j}>{location}</p>
                                       </div>
                                   ))
-                                : event.chnLocation.map((location, i) => (
+                                : event.chnLocation.map((location, j) => (
                                       <div className="flex justify-center items-center px-3 h-5 text-white bg-black rounded-full">
-                                          <p key={i}>{location}</p>
+                                          <p key={j}>{location}</p>
                                       </div>
                                   ))}
                         </div>
@@ -67,8 +67,11 @@ const PastEvents: React.FC<Props> = ({ lang, setLang }) => {
             </div>
             {years.map((year, i) => {
                 return (
-                    <div className="mx-auto w-full text-center h-[80vh] my-[2vh]">
-                        <h2 key={i} className="mb-2 text-3xl font-bold">
+                    <div className="mx-auto w-full lg:text-center h-[80vh] my-[2vh]">
+                        <h2
+                            key={i}
+                            className="mb-2 ml-3 text-3xl font-bold lg:ml-0"
+                        >
                             {year} 年
                         </h2>
                         <Chrono
