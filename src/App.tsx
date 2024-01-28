@@ -13,6 +13,7 @@ export default function App() {
                 <Route
                     path="/past_events"
                     element={<PastEvents lang={lang} setLang={setLang} />}
+                    key="past_events"
                 />
             </Routes>
         </BrowserRouter>

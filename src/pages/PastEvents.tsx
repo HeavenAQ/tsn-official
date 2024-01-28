@@ -1,5 +1,5 @@
 import React from 'react'
-import { CompanyPastEvent, Lang, Month } from '../types'
+import { CompanyPastEvent, Lang, Month, Year } from '../types'
 import { Chrono } from 'react-chrono'
 import DropDownMenu from '../components/DropDownMenu'
 import { pastEvents } from '../info'
@@ -19,33 +19,37 @@ interface Item {
 const renderMonthEvent = (
     lang: Lang,
     events: CompanyPastEvent[],
-    idx: number
+    baseIdx: number
 ) => {
     return (
-        <div key={idx} className="pl-5 w-full h-full">
-            <ul>
-                {events.map((event, i) => (
-                    <li key={i} className="mb-4 list-disc">
-                        <h4 className="mb-1">
-                            {lang === Lang.JP ? event.jpTitle : event.chnTitle}
-                        </h4>
-                        <div className="flex justify-start items-center space-x-3">
-                            {lang === Lang.JP
-                                ? event.jpLocation.map((location, j) => (
-                                      <div className="flex justify-center items-center px-3 h-5 text-white bg-black rounded-full">
-                                          <p key={j}>{location}</p>
-                                      </div>
-                                  ))
-                                : event.chnLocation.map((location, j) => (
-                                      <div className="flex justify-center items-center px-3 h-5 text-white bg-black rounded-full">
-                                          <p key={j}>{location}</p>
-                                      </div>
-                                  ))}
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <ul key={baseIdx}>
+            {events.map((event, i) => (
+                <li key={1 + i + baseIdx} className="mb-4 list-disc">
+                    <h4 className="mb-1">
+                        {lang === Lang.JP ? event.jpTitle : event.chnTitle}
+                    </h4>
+                    <div className="flex flex-col justify-start items-start space-y-1 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-3">
+                        {lang === Lang.JP
+                            ? event.jpLocation.map((location, j) => (
+                                  <div
+                                      key={j}
+                                      className="flex justify-center items-center px-3 text-white bg-gray-500 rounded-full"
+                                  >
+                                      <p>{location}</p>
+                                  </div>
+                              ))
+                            : event.chnLocation.map((location, j) => (
+                                  <div
+                                      key={j}
+                                      className="flex justify-center items-center px-3 text-white bg-gray-500 rounded-full"
+                                  >
+                                      <p>{location}</p>
+                                  </div>
+                              ))}
+                    </div>
+                </li>
+            ))}
+        </ul>
     )
 }
 
@@ -65,52 +69,51 @@ const PastEvents: React.FC<Props> = ({ lang, setLang }) => {
                     />
                 </a>
             </div>
-            {years.map((year, i) => {
-                return (
-                    <div className="mx-auto w-full lg:text-center h-[80vh] my-[2vh]">
-                        <h2
-                            key={i}
-                            className="mb-2 ml-3 text-3xl font-bold lg:ml-0"
-                        >
-                            {year} 年
-                        </h2>
-                        <Chrono
-                            items={data}
-                            mode="VERTICAL_ALTERNATING"
-                            slideShow
-                            cardWidth={900}
-                            cardHeight={250}
-                            slideItemDuration={3000}
-                            contentDetailsHeight={150}
-                            fontSizes={{
-                                title: '1.1rem'
-                            }}
-                            theme={{
-                                primary: 'black',
-                                secondary: 'black',
-                                titleColor: 'black',
-                                cardBgColor: '#f5f5f5',
-                                cardTitleColor: 'black',
-                                titleColorActive: 'white'
-                            }}
-                        >
-                            {pastEventsArray[i].map((monthEvent, j) => {
-                                data.push({
-                                    title: Month.toString(monthEvent.month),
-                                    cardTitle: '',
-                                    cardSubtitle: ``,
-                                    cardDetailedText: ``
-                                })
-                                return renderMonthEvent(
-                                    lang,
-                                    monthEvent.events,
-                                    j
-                                )
-                            })}
-                        </Chrono>
-                    </div>
-                )
-            })}
+            <div className="mx-auto w-full h-[85vh] my-[2vh]">
+                <Chrono
+                    items={data}
+                    mode="VERTICAL"
+                    slideShow
+                    cardWidth={900}
+                    cardHeight=""
+                    slideItemDuration={3000}
+                    contentDetailsHeight={150}
+                    fontSizes={{
+                        title: '1.1rem'
+                    }}
+                    theme={{
+                        primary: 'black',
+                        secondary: 'black',
+                        titleColor: 'black',
+                        cardBgColor: '#f5f5f5',
+                        cardTitleColor: 'black',
+                        titleColorActive: 'white'
+                    }}
+                >
+                    {years.map((year, i) => {
+                        data.push({
+                            title: Year.toString(year),
+                            cardTitle: '',
+                            cardSubtitle: ``,
+                            cardDetailedText: ``
+                        })
+                        return (
+                            <div
+                                key={i}
+                                className="overflow-auto pl-5 w-full h-full"
+                            >
+                                {pastEventsArray[i].map((monthEvent, j) => {
+                                    return renderMonthEvent(
+                                        lang,
+                                        monthEvent.events,
+                                        j
+                                    )
+                                })}
+                            </div>
+                        )
+                    })}
+                </Chrono>
+            </div>
         </div>
     )
 }
