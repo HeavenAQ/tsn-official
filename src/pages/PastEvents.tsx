@@ -78,6 +78,7 @@ const PastEvents: React.FC<Props> = ({ lang, setLang }) => {
                     cardHeight=""
                     slideItemDuration={3000}
                     contentDetailsHeight={150}
+                    useReadMore={false}
                     fontSizes={{
                         title: '1.1rem'
                     }}
