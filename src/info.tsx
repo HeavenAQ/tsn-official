@@ -101,7 +101,7 @@ export const navContent = [
         link: '#contact_us'
     },
     {
-        chn: '業績案例',
+        chn: 'tsn 記事',
         jp: '実績',
         link: 'past_events'
     }
