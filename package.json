@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@babel/plugin-transform-private-property-in-object": "^7.23.4",
+        "@emailjs/browser": "^4.3.3",
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
@@ -11,6 +12,7 @@
         "@types/node": "^16.18.57",
         "@types/react": "^18.2.24",
         "@types/react-dom": "^18.2.8",
+        "axios": "^1.6.8",
         "framer-motion": "^10.16.16",
         "punycode": "^2.3.1",
         "react": "^18.2.0",
