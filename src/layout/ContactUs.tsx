@@ -7,9 +7,9 @@ interface Props {
     lang: Lang
 }
 
-const serviceID = process.env.EMAILJS_SERVICE_ID
-const templateID = process.env.EMAILJS_TEMPLATE_ID
-const apiKey = process.env.EMAILJS_API_KEY
+const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID
+const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID
+const apiKey = process.env.REACT_APP_EMAILJS_API_KEY
 
 const nowLoading = () => (
     <>
