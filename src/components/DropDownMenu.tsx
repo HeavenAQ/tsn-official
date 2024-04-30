@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { FiAlignLeft } from 'react-icons/fi'
 import { Lang } from '../types'
-import { navContent } from '../info'
+import { navContent } from '../data/navbar'
 import { useLocation } from 'react-router-dom'
 
 interface Props {

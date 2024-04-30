@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { events, Event } from '../info'
+import { events, Event } from '../data/images'
 import { Lang } from '../types'
 
 const selectedEffect = [

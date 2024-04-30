@@ -1,7 +1,7 @@
 import React from 'react'
 import { Lang } from '../types'
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
-import { navContent } from '../info'
+import { navContent } from '../data/navbar'
 import LangSwitch from '../components/LangSwitch'
 
 interface Props {

@@ -1,6 +1,6 @@
 import React from 'react'
 import Carousel from '../components/Carousel'
-import { carouselImages } from '../info'
+import { carouselImages } from '../data/images'
 import { Lang } from '../types'
 
 interface Props {

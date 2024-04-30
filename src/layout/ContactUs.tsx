@@ -1,6 +1,6 @@
 import React from 'react'
 import { Lang } from '../types'
-import { services } from '../info'
+import { services } from '../data/service'
 import emailjs from '@emailjs/browser'
 
 interface Props {

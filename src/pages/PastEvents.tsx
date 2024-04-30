@@ -2,7 +2,7 @@ import React from 'react'
 import { CompanyPastEvent, Lang, Year } from '../types'
 import { Chrono } from 'react-chrono'
 import DropDownMenu from '../components/DropDownMenu'
-import { pastEvents } from '../info'
+import { pastEvents } from '../data/pastEvents'
 
 interface Props {
     lang: Lang

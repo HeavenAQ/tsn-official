@@ -2,9 +2,8 @@ import { FaPaintBrush } from 'react-icons/fa'
 import { BsCalendar2Event } from 'react-icons/bs'
 import { BsHouseDoorFill } from 'react-icons/bs'
 import { PiTranslateBold } from 'react-icons/pi'
-import SlideShow from '../components/Carousel'
 import { Lang } from '../types'
-import { services, carouselImages } from '../info'
+import { services } from '../data/service'
 
 interface Props {
     lang: Lang
