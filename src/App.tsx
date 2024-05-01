@@ -17,7 +17,10 @@ export default function App() {
                     element={<PastEvents lang={lang} setLang={setLang} />}
                     key="past_events"
                 />
-                <Route path="/sake" element={<Sake />} />
+                <Route
+                    path="/sake"
+                    element={<Sake lang={lang} setLang={setLang} />}
+                />
                 <Route path="*" element={<Page404 />} />
             </Routes>
         </BrowserRouter>

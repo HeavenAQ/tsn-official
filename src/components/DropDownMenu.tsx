@@ -32,7 +32,7 @@ const DropDownMenu: React.FC<Props> = ({ lang, setLang }) => {
             >
                 {navContent.map(({ chn, jp, link }, i) => (
                     <li key={i}>
-                        <a href={`/${link}`}>{lang === Lang.CN ? chn : jp}</a>
+                        <a href={`${link}`}>{lang === Lang.CN ? chn : jp}</a>
                     </li>
                 ))}
                 <li>
