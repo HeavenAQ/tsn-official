@@ -1,6 +1,5 @@
 import React from 'react'
-import Hero from '../layout/Hero'
-import Footer from '../layout/Footer'
+import Hero from '../components/Hero'
 import { Lang } from '../types'
 
 interface Props {

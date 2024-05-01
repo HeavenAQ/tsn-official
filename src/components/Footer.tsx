@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
     ]
 
     return (
-        <footer className="flex overflow-hidden left-1/2 z-30 flex-col gap-6 justify-center items-center p-6 mx-auto w-full h-80 text-center text-white bg-zinc-500">
+        <footer className="flex overflow-hidden left-1/2 z-30 flex-col gap-6 justify-center items-center p-6 mx-auto w-full h-80 text-center text-white bg-zinc-600">
             <a className="cursor-pointer" href="/">
                 <img
                     src="/images/logo.webp"
