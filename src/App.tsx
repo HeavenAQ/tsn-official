@@ -21,6 +21,7 @@ export default function App() {
                     path="/sake"
                     element={<Sake lang={lang} setLang={setLang} />}
                 />
+
                 <Route path="*" element={<Page404 />} />
             </Routes>
         </BrowserRouter>

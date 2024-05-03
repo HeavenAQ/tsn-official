@@ -1,68 +1,159 @@
-import React, { useState, useContext, FC } from 'react'
+import React, { FC, useRef, useState } from 'react'
+import Layout from '../layout/Layout'
 import { Lang } from '../types'
+import { sakes, SakeInfo, SakeDescription } from '../data/sakes'
+import Markdown from 'react-markdown'
+import { Link, useLocation } from 'react-router-dom'
 
-const services = {
-    chn: ['展覽規劃', '場地租借', '演講翻譯', '樂器租借'],
-    jp: ['展覧会の計画', '会場の貸し出し', '講演の翻訳', '楽器の貸し出し'],
-    getService(lang: Lang): string[] {
-        return this[lang]
-    },
-    getServiceInfoList(lang: Lang) {
-        const serviceTitles = this.getService(lang)
-        const serviceDescriptions = Array(4).fill(
-            'Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.'
-        )
-        const serviceImages = Array(4).fill(
-            '/images/鳥取/LINE_ALBUM_2023日本鳥取県-台湾学校作品合同展_231210_4.webp'
-        )
-        return serviceTitles.map((title, idx) => ({
-            title,
-            description: serviceDescriptions[idx],
-            images: [serviceImages[idx]]
-        }))
+interface SakeDescriptionProps {
+    lang: Lang
+    description: SakeDescription
+}
+const SakeDescriptionTabs: FC<SakeDescriptionProps> = ({
+    lang,
+    description
+}) => {
+    const [activeTab, setActiveTab] = useState(0)
+    const activeTabStyle = () => {
+        switch (activeTab) {
+            case 0:
+                return 'after:ml-0'
+            case 1:
+                return 'after:ml-[calc(100%/3)]'
+            case 2:
+                return 'after:ml-[calc(100%/3*2)]'
+        }
     }
+
+    const activeContentStyle = () => {
+        switch (activeTab) {
+            case 0:
+                return 'translate-x-0'
+            case 1:
+                return '-translate-x-[calc(100%/3)]'
+            case 2:
+                return '-translate-x-[calc(100%/3*2)]'
+        }
+    }
+    return (
+        <div className="overflow-x-hidden lg:mt-0">
+            <div className="text-sm font-semibold text-center text-gray-500 border-b-2">
+                <div
+                    className={`relative grid grid-cols-3 mx-auto rounded-lg after:absolute after:inset-0 after:w-[calc(100%/3)] after:bg-gray-200 after:rounded-tl-lg after:rounded-tr-lg after:-z-10 isolate ${activeTabStyle()} after:duration-300`}
+                >
+                    <button
+                        className="inline-block p-2 rounded-t-lg border-b-2 border-transparent duration-300 hover:border-gray-300 hover:text-zinc-300"
+                        onClick={() => setActiveTab(0)}
+                    >
+                        {lang === Lang.JP ? '商品案內' : '商品描述'}
+                    </button>
+                    <button
+                        className="inline-block p-2 rounded-t-lg border-b-2 border-transparent duration-300 cursor-pointer hover:text-zinc-300 hover:border-zinc-300"
+                        aria-current="page"
+                        onClick={() => setActiveTab(1)}
+                    >
+                        {lang === Lang.JP ? '商品情報' : '商品詳情'}
+                    </button>
+                    <button
+                        className="inline-block p-2 rounded-t-lg border-b-2 border-transparent duration-300 cursor-pointer hover:text-zinc-300 hover:border-zinc-300"
+                        onClick={() => setActiveTab(2)}
+                    >
+                        {lang === Lang.JP ? '飲み方' : '飲用建議'}
+                    </button>
+                </div>
+            </div>
+            <div
+                className={`py-4 w-[300%] grid grid-cols-3 transition-transform duration-300 ease-in-out ${activeContentStyle()}`}
+            >
+                <div>
+                    {description && description.title !== undefined ? (
+                        <h1 className="mb-3 font-bold text-md">
+                            {description?.title}
+                        </h1>
+                    ) : null}
+                    <p>{description?.introduction}</p>
+                </div>
+                <div>
+                    <Markdown
+                        components={{
+                            ul: ({ node, ...props }) => (
+                                <ul className="ml-8 list-disc">
+                                    {props.children}
+                                </ul>
+                            )
+                        }}
+                    >
+                        {description?.itemInfo}
+                    </Markdown>
+                </div>
+                <div>
+                    <Markdown
+                        components={{
+                            ul: ({ node, ...props }) => (
+                                <ul className="ml-8 list-disc">
+                                    {props.children}
+                                </ul>
+                            )
+                        }}
+                    >
+                        {description?.recommendation}
+                    </Markdown>
+                </div>
+            </div>
+        </div>
+    )
 }
 
-interface ServiceInfo {
-    title: string
-    description: string
-    images: string[]
-}
-
-interface ServiceCardProps {
+interface SakeCardProps {
     id: number
-    service: ServiceInfo
+    sake: SakeInfo
+    lang: Lang
 }
-
-const SakeCard: FC<ServiceCardProps> = ({ id, service }) => {
+const SakeCard: FC<SakeCardProps> = ({ id, sake, lang }) => {
     const isImgLeft = id % 2 === 0
 
     return (
         <div id={id.toString()}>
-            <div className="inline-grid grid-cols-1 gap-10 lg:grid-cols-2">
+            <div className="gap-8 sm:gap-10 lg:inline-grid lg:grid-cols-2">
                 {isImgLeft && (
-                    <div className="hidden lg:grid">
-                        <p>{service.description}</p>
+                    <div className="hidden list-disc lg:grid">
+                        <SakeDescriptionTabs
+                            description={sake.description}
+                            lang={lang}
+                        />
                     </div>
                 )}
-                <div className="relative w-auto text-center">
-                    <h1 className="absolute -top-14 left-1/2 text-3xl font-bold -translate-x-1/2 break-keep">
-                        {service.title}
+                <div className="flex flex-col h-full">
+                    <h1 className="mb-3 text-lg font-bold text-center sm:-top-14 sm:text-xl lg:text-2xl xl:text-3xl break-keep tracking-[15px]">
+                        {sake.title}
                     </h1>
-                    <img
-                        className="w-full h-full rounded-lg"
-                        src={service.images[0]}
-                        alt="service image"
-                    />
+                    <div className="relative mx-auto w-full h-full text-center">
+                        <img
+                            className="object-cover w-full h-full rounded-lg"
+                            width="100%"
+                            height="100%"
+                            src={sake.images[0]}
+                            alt="service image"
+                        />
+                        <h2 className="hidden text-lg font-medium lg:inline-block font-m-plus tracking-[10px]">
+                            {sake.subtitle}
+                        </h2>
+                    </div>
+                    <div className="grid mt-6 list-disc lg:hidden">
+                        <SakeDescriptionTabs
+                            description={sake.description}
+                            lang={lang}
+                        />
+                    </div>
                 </div>
                 {!isImgLeft && (
-                    <div className="hidden lg:grid">
-                        <p>{service.description}</p>
+                    <div className="hidden list-disc lg:grid">
+                        <SakeDescriptionTabs
+                            description={sake.description}
+                            lang={lang}
+                        />
                     </div>
                 )}
-                <div className="grid lg:hidden">
-                    <p>{service.description}</p>
-                </div>
             </div>
         </div>
     )
@@ -74,20 +165,22 @@ interface SakeProps {
 }
 
 const Sake: FC<SakeProps> = ({ lang, setLang }) => {
-    const servicesInfo = services.getServiceInfoList(lang)
+    const servicesInfo = sakes.getSakeInfoList(lang)
 
     return (
-        <div className="relative mx-auto mb-24 w-4/5 snap-y snap-mandatory scroll-smooth">
-            {servicesInfo.map((service, i) => (
-                <div
-                    key={service.title}
-                    id={service.title}
-                    className="flex justify-center items-center h-[100vh] snap-start"
-                >
-                    <SakeCard id={i} service={service} />
-                </div>
-            ))}
-        </div>
+        <Layout lang={lang} setLang={setLang}>
+            <div className="px-8 mx-auto w-full md:overflow-scroll md:px-14 md:h-[91vh] md:snap-y md:snap-mandatory md:scroll-smooth">
+                {servicesInfo.map((sake, i) => (
+                    <div
+                        key={sake.title}
+                        id={sake.title}
+                        className="flex justify-center pt-4 pb-16 lg:pt-20 lg:pb-0 md:snap-start md:h-[92vh]"
+                    >
+                        <SakeCard id={i} sake={sake} lang={lang} />
+                    </div>
+                ))}
+            </div>
+        </Layout>
     )
 }
 
