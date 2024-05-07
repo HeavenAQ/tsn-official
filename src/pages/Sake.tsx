@@ -1,18 +1,12 @@
-import React, { FC, useRef, useState } from 'react'
-import Layout from '../layout/Layout'
+import React, { FC, useState } from 'react'
 import { Lang } from '../types'
 import { sakes, SakeInfo, SakeDescription } from '../data/sakes'
 import Markdown from 'react-markdown'
-import { Link, useLocation } from 'react-router-dom'
 
 interface SakeDescriptionProps {
-    lang: Lang
     description: SakeDescription
 }
-const SakeDescriptionTabs: FC<SakeDescriptionProps> = ({
-    lang,
-    description
-}) => {
+const SakeDescriptionTabs: FC<SakeDescriptionProps> = ({ description }) => {
     const [activeTab, setActiveTab] = useState(0)
     const activeTabStyle = () => {
         switch (activeTab) {
@@ -45,20 +39,20 @@ const SakeDescriptionTabs: FC<SakeDescriptionProps> = ({
                         className="inline-block p-2 rounded-t-lg border-b-2 border-transparent duration-300 hover:border-gray-300 hover:text-zinc-300"
                         onClick={() => setActiveTab(0)}
                     >
-                        {lang === Lang.JP ? '商品案內' : '商品描述'}
+                        商品描述
                     </button>
                     <button
                         className="inline-block p-2 rounded-t-lg border-b-2 border-transparent duration-300 cursor-pointer hover:text-zinc-300 hover:border-zinc-300"
                         aria-current="page"
                         onClick={() => setActiveTab(1)}
                     >
-                        {lang === Lang.JP ? '商品情報' : '商品詳情'}
+                        商品詳情
                     </button>
                     <button
                         className="inline-block p-2 rounded-t-lg border-b-2 border-transparent duration-300 cursor-pointer hover:text-zinc-300 hover:border-zinc-300"
                         onClick={() => setActiveTab(2)}
                     >
-                        {lang === Lang.JP ? '飲み方' : '飲用建議'}
+                        飲用建議
                     </button>
                 </div>
             </div>
@@ -107,9 +101,8 @@ const SakeDescriptionTabs: FC<SakeDescriptionProps> = ({
 interface SakeCardProps {
     id: number
     sake: SakeInfo
-    lang: Lang
 }
-const SakeCard: FC<SakeCardProps> = ({ id, sake, lang }) => {
+const SakeCard: FC<SakeCardProps> = ({ id, sake }) => {
     const isImgLeft = id % 2 === 0
 
     return (
@@ -117,10 +110,7 @@ const SakeCard: FC<SakeCardProps> = ({ id, sake, lang }) => {
             <div className="gap-8 sm:gap-10 lg:inline-grid lg:grid-cols-2">
                 {isImgLeft && (
                     <div className="hidden list-disc lg:grid">
-                        <SakeDescriptionTabs
-                            description={sake.description}
-                            lang={lang}
-                        />
+                        <SakeDescriptionTabs description={sake.description} />
                     </div>
                 )}
                 <div className="flex flex-col h-full">
@@ -140,18 +130,12 @@ const SakeCard: FC<SakeCardProps> = ({ id, sake, lang }) => {
                         </h2>
                     </div>
                     <div className="grid mt-6 list-disc lg:hidden">
-                        <SakeDescriptionTabs
-                            description={sake.description}
-                            lang={lang}
-                        />
+                        <SakeDescriptionTabs description={sake.description} />
                     </div>
                 </div>
                 {!isImgLeft && (
                     <div className="hidden list-disc lg:grid">
-                        <SakeDescriptionTabs
-                            description={sake.description}
-                            lang={lang}
-                        />
+                        <SakeDescriptionTabs description={sake.description} />
                     </div>
                 )}
             </div>
@@ -164,23 +148,21 @@ interface SakeProps {
     setLang: React.Dispatch<React.SetStateAction<Lang>>
 }
 
-const Sake: FC<SakeProps> = ({ lang, setLang }) => {
-    const servicesInfo = sakes.getSakeInfoList(lang)
+const Sake: FC<SakeProps> = () => {
+    const servicesInfo = sakes.getSakeInfoList(Lang.CN)
 
     return (
-        <Layout lang={lang} setLang={setLang}>
-            <div className="px-8 mx-auto w-full md:overflow-scroll md:px-14 md:h-[91vh] md:snap-y md:snap-mandatory md:scroll-smooth">
-                {servicesInfo.map((sake, i) => (
-                    <div
-                        key={sake.title}
-                        id={sake.title}
-                        className="flex justify-center pt-4 pb-16 lg:pt-20 lg:pb-0 md:snap-start md:h-[92vh]"
-                    >
-                        <SakeCard id={i} sake={sake} lang={lang} />
-                    </div>
-                ))}
-            </div>
-        </Layout>
+        <div className="overflow-scroll px-8 mx-auto w-full md:px-14 h-[100vh] snap-y snap-mandatory scroll-smooth">
+            {servicesInfo.map((sake, i) => (
+                <div
+                    key={sake.title}
+                    id={sake.title}
+                    className="flex justify-center pt-8 pb-16 lg:items-center lg:pt-0 lg:pb-0 h-[100vh] snap-start"
+                >
+                    <SakeCard id={i} sake={sake} />
+                </div>
+            ))}
+        </div>
     )
 }
 

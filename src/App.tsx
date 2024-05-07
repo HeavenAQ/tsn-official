@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import PastEvents from './pages/PastEvents'
 import Page404 from './pages/404'
-import Sake from './pages/Sake'
 
 export default function App() {
     const [lang, setLang] = React.useState<Lang>(Lang.CN)
@@ -16,10 +15,6 @@ export default function App() {
                     path="/past_events"
                     element={<PastEvents lang={lang} setLang={setLang} />}
                     key="past_events"
-                />
-                <Route
-                    path="/sake"
-                    element={<Sake lang={lang} setLang={setLang} />}
                 />
 
                 <Route path="*" element={<Page404 />} />

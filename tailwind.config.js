@@ -2,7 +2,9 @@
 module.exports = {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
     theme: {
-        extend: {},
+        extend: {
+            scrollBehavior: ['smooth']
+        },
         fontFamily: {
             'chakra-petch': ['Chakra Petch', 'sans-serif'],
             'm-plus': ['M PLUS Rounded 1c', 'sans-serif'],
@@ -13,5 +15,9 @@ module.exports = {
         themes: false,
         darkTheme: false
     },
-    plugins: [require('daisyui'), require('tailwindcss-animated')]
+    plugins: [
+        require('daisyui'),
+        require('tailwindcss-animated'),
+        require('@tailwindcss/line-clamp')
+    ]
 }

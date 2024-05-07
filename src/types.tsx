@@ -50,7 +50,8 @@ export namespace Month {
 }
 
 export enum Year {
-    Year2023
+    Year2023,
+    Year2024
 }
 
 export namespace Year {
@@ -58,6 +59,8 @@ export namespace Year {
         switch (year) {
             case Year.Year2023:
                 return '2023'
+            case Year.Year2024:
+                return '2024'
         }
     }
 }

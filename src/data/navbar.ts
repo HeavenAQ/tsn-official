@@ -25,11 +25,6 @@ export const navContent = [
         link: '#contact_us'
     },
     {
-        chn: '日本酒代理',
-        jp: '日本酒代理',
-        link: 'sake'
-    },
-    {
         chn: 'tsn 記事',
         jp: '実績',
         link: 'past_events'
