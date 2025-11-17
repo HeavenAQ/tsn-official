@@ -51,11 +51,14 @@
             "last 1 safari version"
         ]
     },
-    "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-        "@typescript-eslint/parser": "^5.62.0",
-        "daisyui": "^3.8.3",
-        "prettier": "^3.0.3",
-        "react-router-dom": "^6.21.3"
-    }
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@typescript-eslint/parser": "^5.62.0",
+    "daisyui": "^3.8.3",
+    "prettier": "^3.0.3",
+    "react-router-dom": "^6.21.3"
+  },
+  "engines": {
+    "node": "22.x"
+  }
 }
