@@ -21,6 +21,7 @@
         "react-icons": "^4.11.0",
         "react-markdown": "^9.0.1",
         "react-scripts": "5.0.1",
+        "tailwindcss": "^3.4.14",
         "tailwindcss-animated": "^1.0.1",
         "typescript": "^4.9.5",
         "uri-js": "^4.2.2",
@@ -51,14 +52,14 @@
             "last 1 safari version"
         ]
     },
-  "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@typescript-eslint/parser": "^5.62.0",
-    "daisyui": "^3.8.3",
-    "prettier": "^3.0.3",
-    "react-router-dom": "^6.21.3"
-  },
-  "engines": {
-    "node": "22.x"
-  }
+    "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "@typescript-eslint/parser": "^5.62.0",
+        "daisyui": "^3.8.3",
+        "prettier": "^3.0.3",
+        "react-router-dom": "^6.21.3"
+    },
+    "engines": {
+        "node": "22.x"
+    }
 }

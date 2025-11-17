@@ -18,7 +18,6 @@ module.exports = {
     },
     plugins: [
         require('daisyui'),
-        require('tailwindcss-animated'),
-        require('@tailwindcss/line-clamp')
+        require('tailwindcss-animated')
     ]
 }
