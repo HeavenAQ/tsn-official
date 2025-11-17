@@ -1,26 +1,29 @@
 import React from 'react'
 import { Lang } from '../types'
+
 interface Props {
-    lang: Lang
-    setLang: React.Dispatch<React.SetStateAction<Lang>>
+  lang: Lang
+  setLang: React.Dispatch<React.SetStateAction<Lang>>
 }
 
 const LangSwitch: React.FC<Props> = ({ lang, setLang }) => {
-    return (
-        <label className="swap">
-            <input
-                type="checkbox"
-                className="w-8 h-8 text-gray-700 bg-gray-100 rounded-md transition-all duration-100 hover:bg-gray-300"
-                onClick={() => setLang(lang === Lang.CN ? Lang.JP : Lang.CN)}
-            />
-            <div className="flex justify-center items-center w-full h-full font-bold text-center swap-on">
-                中
-            </div>
-            <div className="flex justify-center items-center w-full h-full font-bold text-center swap-off">
-                日
-            </div>
-        </label>
-    )
+  const isCN = lang === Lang.CN
+  const next = isCN ? Lang.JP : Lang.CN
+  const aria = isCN ? 'Switch to Japanese' : '中文に切り替え'
+
+  return (
+    <button
+      type="button"
+      aria-label={aria}
+      title={isCN ? 'JP' : 'CN'}
+      onClick={() => setLang(next)}
+      className="inline-flex items-center justify-center w-9 h-9 rounded-md border border-zinc-300 text-zinc-700 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-800 dark:focus-visible:ring-zinc-600 transition-colors"
+    >
+      <span key={lang} className="animate-fade text-sm font-semibold">
+        {isCN ? '中' : '日'}
+      </span>
+    </button>
+  )
 }
 
 export default LangSwitch

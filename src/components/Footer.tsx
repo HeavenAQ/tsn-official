@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
     ]
 
     return (
-        <footer className="flex overflow-hidden left-1/2 z-30 flex-col gap-6 justify-center items-center p-6 mx-auto w-full h-80 text-center text-white bg-zinc-600">
+        <footer className="flex overflow-hidden left-1/2 z-30 flex-col gap-6 justify-center items-center p-6 mx-auto w-full h-80 text-center text-zinc-300 bg-zinc-900">
             <a className="cursor-pointer" href="/">
                 <img
                     src="/images/logo.webp"
@@ -31,10 +31,12 @@ const Footer: React.FC = () => {
                         key={i}
                         className="flex flex-col justify-start items-center cursor-pointer"
                     >
-                        <a href={icon.link}>
-                            <div className="tooltip" data-tip={icon.info}>
-                                <button className="btn-sm">{icon.icon}</button>
-                            </div>
+                        <a
+                            href={icon.link}
+                            title={icon.info}
+                            className="text-zinc-400 hover:text-white transition-colors"
+                        >
+                            {icon.icon}
                         </a>
                     </div>
                 ))}

@@ -11,7 +11,7 @@ interface Props {
 export default function Layout({ lang, setLang, children }: Props) {
     const [loaded, setLoaded] = React.useState<boolean>(false)
     return (
-        <div className="overflow-x-hidden w-full h-full font-noto-serif animate-fade-down">
+        <div className="overflow-x-hidden w-full h-full font-sans animate-fade-down">
             <div className="flex relative items-baseline w-full h-96 bg-black text-md">
                 <a href="/">
                     <img

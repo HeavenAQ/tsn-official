@@ -1,6 +1,8 @@
 import React from 'react'
 import { Lang } from '../types'
-import { services } from '../data/service'
+import { content, t } from '../data/siteContent'
+import { FiChevronDown } from 'react-icons/fi'
+import { FaEnvelope, FaPhone } from 'react-icons/fa'
 import emailjs from '@emailjs/browser'
 
 interface Props {
@@ -36,9 +38,7 @@ const nowLoading = () => (
 const ContactUs: React.FC<Props> = ({ lang }: Props) => {
     const [name, setName] = React.useState<string>('')
     const [email, setEmail] = React.useState<string>('')
-    const [serviceType, setServiceType] = React.useState<string>(
-        lang === Lang.JP ? services[0].jp : services[0].chn
-    )
+    const [serviceType, setServiceType] = React.useState<string>('')
     const [title, setTitle] = React.useState<string>('')
     const [body, setBody] = React.useState<string>('')
     const [spinner, setSpinner] = React.useState<boolean>(false)
@@ -93,29 +93,44 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
 
     return (
         <section
-            className="pt-8 mt-20 w-full h-auto bg-gray-100"
-            id="contact_us"
+            className="py-16 w-full bg-zinc-50 dark:bg-zinc-950 animate-fade-up"
+            id="contact"
         >
-            <div className="pt-10 mx-auto w-4/5 lg:w-2/3 max-w-[1000px] h-[850px] md:h-[700px]">
-                <h1 className="mb-8 text-2xl font-black text-center lg:mb-12 lg:text-3xl tracking-[20px]">
+            <div className="mx-auto px-6 max-w-6xl">
+                <h1 className="mb-8 text-2xl font-semibold text-center lg:mb-12 lg:text-3xl tracking-wide">
                     {renderInputField('お問い合わせ', '聯絡我們')}
                 </h1>
-                {spinner && (
-                    <div className="flex justify-center items-center mx-auto mt-20 w-32 h-32">
-                        {nowLoading()}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    {/* Contact info column */}
+                    <div className="space-y-4">
+                        <a href={`mailto:${content.contact.email}`} className="p-5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:shadow-sm transition flex items-center gap-3 bg-white dark:bg-zinc-900">
+                            <FaEnvelope className="text-zinc-700 dark:text-zinc-200" />
+                            <div>
+                                <div className="text-sm text-zinc-500 dark:text-zinc-400">{t(content.contact.emailLabel, lang)}</div>
+                                <div className="font-medium text-zinc-800 dark:text-zinc-200">{content.contact.email}</div>
+                            </div>
+                        </a>
+                        <a href={`tel:${content.contact.phone}`} className="p-5 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:shadow-sm transition flex items-center gap-3 bg-white dark:bg-zinc-900">
+                            <FaPhone className="text-zinc-700 dark:text-zinc-200" />
+                            <div>
+                                <div className="text-sm text-zinc-500 dark:text-zinc-400">{t(content.contact.phoneLabel, lang)}</div>
+                                <div className="font-medium text-zinc-800 dark:text-zinc-200">{content.contact.phone}</div>
+                            </div>
+                        </a>
+                        <p className="text-zinc-700 dark:text-zinc-300 text-sm md:text-base">
+                            {t(content.contact.text, lang)}
+                        </p>
                     </div>
-                )}
-                <form
-                    className={`${
-                        spinner ? 'hidden' : ''
-                    }  p-6 w-full rounded-xl`}
-                    onSubmit={onSubmit}
-                >
-                    <div className="flex flex-wrap -mx-3 mb-6">
-                        <div className="px-3 mb-6 w-full md:mb-0 md:w-1/2">
-                            <input
-                                className="block py-3 px-4 mb-3 w-full leading-tight rounded border appearance-none"
-                                id="grid-first-name"
+                    {/* Form column */}
+                    <form
+                        className={`${spinner ? 'hidden' : ''} p-6 w-full rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800`}
+                        onSubmit={onSubmit}
+                    >
+                        <div className="flex flex-wrap -mx-3 mb-6">
+                            <div className="px-3 mb-6 w-full md:mb-0 md:w-1/2">
+                                <input
+                                    className="block py-3 px-4 mb-3 w-full leading-tight rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 appearance-none focus:outline-none focus:ring-2 focus:ring-zinc-300 dark:focus:ring-zinc-600"
+                                    id="grid-first-name"
                                 type="text"
                                 placeholder={renderInputField('お名前', '姓名')}
                                 onChange={ev => setName(ev.target.value)}
@@ -125,7 +140,7 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
                         </div>
                         <div className="px-3 w-full md:w-1/2">
                             <input
-                                className="block py-3 px-4 mb-3 w-full leading-tight rounded border appearance-none"
+                                className="block py-3 px-4 mb-3 w-full leading-tight rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 appearance-none focus:outline-none focus:ring-2 focus:ring-zinc-300 dark:focus:ring-zinc-600"
                                 id="email"
                                 type="email"
                                 placeholder="example@mail.com"
@@ -138,31 +153,29 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
 
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="px-3 mb-6 w-full md:mb-0 md:w-1/2">
-                            <select
-                                className="block py-3 px-4 mb-3 w-full leading-tight rounded border appearance-none"
-                                onChange={ev => setServiceType(ev.target.value)}
-                                value={serviceType}
-                                id="service-type"
-                            >
-                                {services.map(service => (
-                                    <option
-                                        key={service.jp}
-                                        value={renderInputField(
-                                            service.jp,
-                                            service.chn
-                                        )}
-                                    >
-                                        {renderInputField(
-                                            service.jp,
-                                            service.chn
-                                        )}
+                            <div className="relative">
+                                <select
+                                    aria-label={renderInputField('サービスを選択', '選擇服務')}
+                                    className="block py-3 pr-10 pl-4 mb-3 w-full leading-tight rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 appearance-none focus:outline-none focus:ring-2 focus:ring-zinc-300 dark:focus:ring-zinc-600"
+                                    onChange={ev => setServiceType(ev.target.value)}
+                                    value={serviceType}
+                                    id="service-type"
+                                >
+                                    <option value="" disabled>
+                                        {renderInputField('選択してください', '請選擇')}
                                     </option>
-                                ))}
-                            </select>
+                                    {content.services.items.map(item => (
+                                        <option key={item.key} value={t(item.label, lang)}>
+                                            {t(item.label, lang)}
+                                        </option>
+                                    ))}
+                                </select>
+                                <FiChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 dark:text-zinc-400" />
+                            </div>
                         </div>
                         <div className="px-3 w-full md:w-1/2">
                             <input
-                                className="block py-3 px-4 mb-3 w-full leading-tight rounded border appearance-none"
+                                className="block py-3 px-4 mb-3 w-full leading-tight rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 appearance-none focus:outline-none focus:ring-2 focus:ring-zinc-300 dark:focus:ring-zinc-600"
                                 id="title"
                                 type="text"
                                 placeholder={renderInputField('件名', '主旨')}
@@ -176,7 +189,7 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="px-3 mb-6 w-full md:mb-0">
                             <textarea
-                                className="block py-3 px-4 mb-3 w-full leading-tight rounded border appearance-none"
+                                className="block py-3 px-4 mb-3 w-full leading-tight rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 appearance-none focus:outline-none focus:ring-2 focus:ring-zinc-300 dark:focus:ring-zinc-600"
                                 id="body"
                                 rows={10}
                                 onChange={ev => setBody(ev.target.value)}
@@ -189,24 +202,25 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
                             />
                         </div>
                     </div>
-
-                    <div className="flex flex-wrap -mx-3 mb-6">
-                        <div className="flex justify-center items-end w-full h-auto text-white">
+                    <div className="flex flex-wrap -mx-3 mb-0">
+                        <div className="flex justify-end w-full">
                             <button
                                 type="submit"
-                                className="inline-flex overflow-hidden relative justify-start items-center py-3 px-6 font-medium rounded-xl transition-all bg-zinc-500 group"
+                                className="inline-flex justify-center items-center py-3 px-6 font-medium rounded-md transition-colors bg-zinc-900 text-white hover:bg-zinc-800"
                             >
-                                <span className="inline-block absolute top-0 right-0 w-4 h-4 rounded transition-all duration-500 ease-in-out group-hover:-mt-4 group-hover:-mr-4 bg-zinc-700">
-                                    <span className="absolute top-0 right-0 w-5 h-5 bg-white rotate-45 translate-x-1/2 -translate-y-1/2"></span>
-                                </span>
-                                <span className="absolute bottom-0 left-0 w-full h-full rounded-2xl transition-all duration-500 ease-in-out delay-200 -translate-x-full translate-y-full group-hover:mb-12 group-hover:translate-x-0 bg-zinc-600"></span>
-                                <span className="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white">
+                                <span className="relative w-full text-center">
                                     {renderInputField('送信', '送出')}
                                 </span>
                             </button>
                         </div>
                     </div>
-                </form>
+                    </form>
+                    {spinner && (
+                        <div className="md:col-start-2 flex justify-center items-center mx-auto mt-10 w-32 h-32">
+                            {nowLoading()}
+                        </div>
+                    )}
+                </div>
             </div>
         </section>
     )

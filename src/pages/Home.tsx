@@ -1,12 +1,11 @@
 import React from 'react'
-import DropDownMenu from '../components/DropDownMenu'
-import CompanyInfo from '../components/CompanyInfo'
-import ContactUs from '../components/ContactUs'
 import Footer from '../components/Footer'
-import Hero from '../components/Hero'
-import RecentEvents from '../components/RecentEvents'
-import EventGallery from '../components/EventGallery'
-import Services from '../components/Services'
+import Header from '../components/Header'
+import HeroV2 from '../components/HeroV2'
+import ServicesV2 from '../components/ServicesV2'
+import Why from '../components/Why'
+import CompanyTable from '../components/CompanyTable'
+import ContactUs from '../components/ContactUs'
 import { Lang } from '../types'
 
 interface Props {
@@ -16,19 +15,16 @@ interface Props {
 
 const Home: React.FC<Props> = ({ lang, setLang }) => {
     return (
-        <div className="w-full h-full font-noto-serif animate-fade-down">
-            <Hero lang={lang} setLang={setLang} />
-            <div className="relative w-full h-full" id="recent_events">
-                <div id="dropdown" className="sticky top-4 m-4">
-                    <DropDownMenu lang={lang} setLang={setLang} />
-                </div>
-                <RecentEvents lang={lang} />
-                <CompanyInfo lang={lang} />
-                <Services lang={lang} />
-                <EventGallery lang={lang} />
+        <div className="w-full h-full font-sans bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
+            <Header lang={lang} setLang={setLang} />
+            <div key={lang} className="animate-fade">
+                <HeroV2 lang={lang} />
+                <ServicesV2 lang={lang} />
+                <Why lang={lang} />
+                <CompanyTable lang={lang} />
                 <ContactUs lang={lang} />
-                <Footer />
             </div>
+            <Footer />
         </div>
     )
 }
