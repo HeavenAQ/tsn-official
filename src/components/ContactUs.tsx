@@ -3,15 +3,10 @@ import { Lang } from '../types'
 import { content, t } from '../data/siteContent'
 import { FiChevronDown } from 'react-icons/fi'
 import { FaEnvelope, FaPhone } from 'react-icons/fa'
-import emailjs from '@emailjs/browser'
 
 interface Props {
     lang: Lang
 }
-
-const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID
-const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID
-const apiKey = process.env.REACT_APP_EMAILJS_API_KEY
 
 const nowLoading = () => (
     <>
@@ -42,7 +37,7 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
     const [title, setTitle] = React.useState<string>('')
     const [body, setBody] = React.useState<string>('')
     const [spinner, setSpinner] = React.useState<boolean>(false)
-    const onSubmit = (ev: React.FormEvent) => {
+    const onSubmit = async (ev: React.FormEvent) => {
         ev.preventDefault()
         setSpinner(true)
 
@@ -54,23 +49,22 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
             return
         }
 
-        const templateParams = {
-            name: name,
-            from_email: email,
-            service_type: serviceType,
-            title: title,
-            body: body
-        }
+        try {
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    serviceType,
+                    title,
+                    body,
+                }),
+            })
 
-        if (!serviceID || !templateID || !apiKey) {
-            lang === Lang.JP ? alert('送信に失敗しました') : alert('送出失敗')
-            setSpinner(false)
-            return
-        }
-
-        emailjs
-            .send(serviceID, templateID, templateParams, apiKey)
-            .then(_ => {
+            if (response.ok) {
                 setSpinner(false)
                 setName('')
                 setEmail('')
@@ -78,13 +72,18 @@ const ContactUs: React.FC<Props> = ({ lang }: Props) => {
                 setTitle('')
                 setBody('')
                 lang === Lang.JP ? alert('送信しました') : alert('已送出')
-            })
-            .catch(_ => {
+            } else {
                 setSpinner(false)
                 lang === Lang.JP
                     ? alert('送信に失敗しました')
                     : alert('送出失敗')
-            })
+            }
+        } catch {
+            setSpinner(false)
+            lang === Lang.JP
+                ? alert('送信に失敗しました')
+                : alert('送出失敗')
+        }
     }
 
     const renderInputField = (jp: string, chn: string) => {
